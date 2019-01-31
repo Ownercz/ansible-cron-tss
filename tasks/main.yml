@@ -1,0 +1,17 @@
+- cron:
+    name: "Run ts server at startup"
+    job: "/home/teamspeak/ts3server_startscript.sh start > /dev/null 2>&1"
+    user: teamspeak
+    special_time: reboot
+
+- name: Setting permissions on java folder
+  file:
+    path: /home/teamspeak
+    owner: teamspeak
+    group: teamspeak
+
+- name: Changing permissions of "/home/teamspeak/ts3server_minimal_runscript.sh" and adding executable bit "+x"
+  file: dest=/home/teamspeak/ts3server_minimal_runscript.sh mode=a+x
+
+- name: Changing permissions of "/home/teamspeak/ts3server_startscript.sh" and adding executable bit "+x"
+  file: dest=/home/teamspeak/ts3server_startscript.sh mode=a+x
